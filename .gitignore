@@ -1,0 +1,5 @@
+*.o.dSYM
+*.out
+*.o
+forward
+hmmseqgen
