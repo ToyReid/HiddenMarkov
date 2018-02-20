@@ -1,5 +1,10 @@
 *.o.dSYM
 *.out
 *.o
-forward
+forvit
 hmmseqgen
+*.fasta
+kiroutput.txt
+viterbi.1.txt
+viterbi.2.txt
+submission

@@ -1,24 +1,28 @@
 CC = g++
 CFLAGS = -g -Wall -std=c++11
-EXECUTABLES = hmmseqgen forward
-OBJS = forward.o hmm.o
+EXECUTABLES = hmmseqgen forvit
+OBJS = forvit.o hmm.o
 
 all: $(EXECUTABLES)
 
-forward: $(OBJS)
-	$(CC) $(CFLAGS) -o forward $(OBJS)
+forvit: $(OBJS)
+	$(CC) $(CFLAGS) -o forvit $(OBJS)
 
-hmmseqgen: hmmseqgen.o
-	$(CC) $(CFLAGS) -o hmmseqgen hmmseqgen.o
+hmmseqgen: hmmseqgen.o hmm.o
+	$(CC) $(CFLAGS) -o hmmseqgen hmmseqgen.o hmm.o
 
-hmm.o: hmm.cpp
-	$(CC) $(CFLAGS) -c hmm.cpp
+.SUFFIXES: .cpp .o
+.cpp.o:
+	$(CC) $(CFLAGS) -c $*.cpp
 
-forward.o: forward.cpp
-	$(CC) $(CFLAGS) -c forward.cpp
+# hmm.o: hmm.cpp
+# 	$(CC) $(CFLAGS) -c hmm.cpp
 
-hmmseqgen.o: hmmseqgen.cpp
-	$(CC) $(CFLAGS) -c hmmseqgen.cpp
+# forvit.o: forvit.cpp
+# 	$(CC) $(CFLAGS) -c forward.cpp
+
+# hmmseqgen.o: hmmseqgen.cpp
+# 	$(CC) $(CFLAGS) -c hmmseqgen.cpp
 
 clean:
 	rm $(EXECUTABLES) *.o

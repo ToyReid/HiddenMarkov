@@ -1,21 +1,6 @@
 #include "hmm.hpp"
 using namespace std;
 
-Gen::Gen() {
-    int i;
-
-    for(i = 1; i <= 6; i++) {
-        fair.insert(pair<int, double>(i, 1/(double)6));
-    }
-    for(i = 1; i <= 5; i++) {
-        loaded.insert(pair<int, double>(i, 0.1));
-    }
-    loaded.insert(pair<int, double>(6, 0.5));
-
-    shift = 0.05;
-    rolls = 300;
-}
-
 double Gen::Rand() {
     return (double)rand() / (double)RAND_MAX;
 }
@@ -24,7 +9,6 @@ int Gen::DetermineRoll(double prob, map<int, double> weight) {
     double range;
 
     range = weight[1];
-    printf("range = %f, prob = %f\n", range, prob);
     if(prob <= range) return 1;
 
     range += weight[2];

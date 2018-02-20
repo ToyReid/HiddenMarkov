@@ -6,11 +6,11 @@
 #include <ctime>
 #include <vector>
 #include <map>
-#include "readFile.hpp"
+#include <fstream>
 using namespace std;
 
 struct Node {
-    int val;
+    double val;
     Node *trace;
     Node();
 };
@@ -23,10 +23,10 @@ public:
 class Gen {
     int rolls;
     double shift;
-    map<int, double> fair;
-    map<int, double> loaded;
     vector<int> sequence;
 public:
+    map<int, double> fair;
+    map<int, double> loaded;
     Gen();
     void MakeSequence();
     double Rand();
@@ -34,11 +34,16 @@ public:
     void PrintSeq();
 };
 
-class Forward {
-    double shift;
+class ForVit {
+    int seqLength;
+    double fairShift;
+    double loadShift;
     vector<vector<Node *> > table;
     vector<int> sequence;
 public:
-    Forward();
-    void FindProb();
+    ForVit(string fileName);
+    void DeleteTable();
+    double ForwardProb();
+    void ViterbiSeq();
+    string MakeTraceback();
 };
